@@ -6,13 +6,13 @@ pub fn check_auxdata(context: *mut sqlite3_context, values: &[*mut sqlite3_value
     let label = api::value_text(values.get(0).unwrap()).unwrap();
     let value = api::value_text(values.get(1).unwrap()).unwrap();
 
-    assert!(api::auxdata_get(context, 1).is_null());
+    assert!(api::auxdata_get::<String>(context, 1).is_none());
 
     let b = Box::new(String::from(value));
-    api::auxdata_set(context, 1, Box::into_raw(b).cast::<c_void>(), Some(cleanup));
+    api::auxdata_set(context, 1, b, Some(cleanup));
 
-    assert!(!api::auxdata_get(context, 1).is_null());
-    assert!(unsafe { &*api::auxdata_get(context, 1).cast::<String>() } == value);
+    let entry = api::auxdata_get::<String>(context, 1).unwrap();
+    assert!(entry == value);
 
     api::result_text(context, &format!("{label}={value}")).unwrap();
 
