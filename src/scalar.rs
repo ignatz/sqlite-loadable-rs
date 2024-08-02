@@ -19,7 +19,7 @@ use crate::{
 
 use bitflags::bitflags;
 
-use sqlite3ext_sys::{
+use libsql_ffi::{
     SQLITE_DETERMINISTIC, SQLITE_DIRECTONLY, SQLITE_INNOCUOUS, SQLITE_SUBTYPE, SQLITE_UTF16,
     SQLITE_UTF16BE, SQLITE_UTF16LE, SQLITE_UTF8,
 };
