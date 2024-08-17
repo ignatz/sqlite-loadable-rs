@@ -62,7 +62,7 @@ fn create_function_v2(
             db,
             cname.as_ptr(),
             num_args,
-            func_flags.bits,
+            func_flags.bits(),
             p_app,
             x_func,
             x_step,
