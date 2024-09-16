@@ -603,6 +603,7 @@ pub unsafe fn sqlite3ext_context_db_handle(context: *mut sqlite3_context) -> *mu
 }
 
 #[cfg(feature = "static")]
+#[inline(always)]
 pub unsafe fn sqlite3ext_user_data(context: *mut sqlite3_context) -> *mut c_void {
     libsql_ffi::sqlite3_user_data(context)
 }
