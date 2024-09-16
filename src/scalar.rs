@@ -223,7 +223,7 @@ where
                 }
             }
         }
-        Box::into_raw(b);
+        let _ = Box::into_raw(b);
     }
     create_function_v2(
         db,
@@ -324,7 +324,7 @@ where
                 }
             }
         }
-        Box::into_raw(b);
+        let _ = Box::into_raw(b);
     }
 
     (x_func_wrapper::<F, T>, app_pointer.cast())
