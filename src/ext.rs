@@ -98,6 +98,7 @@ pub unsafe fn sqlite3ext_value_bytes(arg1: *mut sqlite3_value) -> i32 {
 }
 
 #[cfg(feature = "static")]
+#[inline(always)]
 pub unsafe fn sqlite3ext_value_blob(arg1: *mut sqlite3_value) -> *const c_void {
     libsql_ffi::sqlite3_value_blob(arg1)
 }
@@ -272,6 +273,7 @@ pub unsafe fn sqlite3ext_value_pointer(arg1: *mut sqlite3_value, p: *mut c_char)
 }
 
 #[cfg(feature = "static")]
+#[inline(always)]
 pub unsafe fn sqlite3ext_result_int(context: *mut sqlite3_context, v: c_int) {
     libsql_ffi::sqlite3_result_int(context, v)
 }
@@ -291,6 +293,7 @@ pub unsafe fn sqlite3ext_result_int(context: *mut sqlite3_context, v: c_int) {
 // or serde??
 // or slice??
 #[cfg(feature = "static")]
+#[inline(always)]
 pub unsafe fn sqlite3ext_result_blob(context: *mut sqlite3_context, p: *const c_void, n: i32) {
     libsql_ffi::sqlite3_result_blob(context, p, n, Some(mem::transmute(-1_isize)));
 }
